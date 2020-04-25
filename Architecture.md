@@ -1,69 +1,82 @@
 # About Architecture and Tech Debt
 
-In order to discuss about architecture in a pragmatic way we need to define what the architecture is usefull for,
-my opinion is that the main object for any improvement on a system architecture is relative to manage tech debt.
+Architecture is quite a broard topic, it spans from library implementation to the IT organization(eg. applying the inverse conway maneuver), and also quite risky considering that a huge change in architeture increase the knowledge needed to deal with your system. As example, deciding that event streaming is the way to go does not means that your engineering community is ready to deal with eventual consistency and all other techinacal details involved.
 
-Next big question is what is the tech debt? and how to evaluate it?
+When and how an evolution of your architecture is needed and how to measure if the change made is going in the right direction is hard to define.
+
+Trying to apply a pragmatic approach avoiding the gut feeling is mandatory in this area.
+
+## The tech debt and the ideal architecture
 
 The best description that I can remember about tech debt sound like:
 
-```tech debt is the distance between your current implementation and the ideal one```
+```tech debt is the distance between your system current implementation and the ideal one```
 
-as this could sound resonable it's impossible to measure directly eaven because the 'ideal one' is a moving target, the best chance is estimate this distance using some sort of proxy metrics.
+as this could sound reasonable it's not so useful per se without a clear measurament of the tech debt, and moreover the concept of `ideal one` is a moving target, because it gets more complex with the growth of your system.
 
-## The ideal architecture
+This definition of the tech debt implies a definition for an `ideal architecture` in the form of:
 
-The idel architecture sadlly isn't a single recipe, there is no such thing as right solution, but a huge set of best practices that you can implement and adapt to your system and organization.
-The only sure thing is that the main characteristic for a perfect architecture could be stated like:
+```an architecture that allow you to deliver efficiently a good quality service```
 
-```an architecture that allow you to deliver rapidly a quality service```
+The ideal architecture sadlly isn't a single recipe, there is no such thing as right solution, but a huge set of best practices that you can implement and adapt to your system and organization in order to reach the right trade off your organization's needs.
 
+
+## Measurement
+
+In order to have a good aproximaption of this distance you need to measure two different dimensions:
+
+* Quality of your service
+* Speed in building your service
+
+and then define some thresholds relevant to define is you have an acceptable tech debt or it's the case to start paying your debit off.
+
+## An example from my experience
 
 ### The definition of quality service
 
-This is a relative complex topic but easier to deal with, we have a lot of accademia and previous research on how describe the desired behavour of a quality service, in a more specific example in Subito we use some metrics (and relative thresholds) to define the quality of our service (and this definition evolves with the time):
+In the context of digital services there is a lot of studies about the definition of quality and you should find the one that fits better to your organization. In Subito we are using an iterative approach defining the relevant metrics and we add more dimensions as soon as we identify new desiderable characteristic. As of today we are monitoring these:
 
 * Availability
 * QoS
 * Latency
 
-Eaven if you have a differnt definito on Quality you can use your own definition as target.
+We defined a complex system of thresholds in order to  be able to easily define if we are in target or not.
 
-### The definition of speed (in delivery)
+### The definition of efficiency (in the develpment phase)
 
-This topic is as complex as the one before but in the same way you could relay on previous works and published researches (eg. Accellerate by Jez Humble, Gene Kim, Nicole Forsgren), so in Subito we define the development performance as:
+We embrace totaly the definition presented within the book Accelerate (by Jez Humble, Gene Kim, Nicole Forsgren) and we define the development performance as:
 
 * Deploy frequency
 * Change fail rate
 * Lead time for change
 * Mean time to Recover
 
-## The guarantees from the ideal architecture
+using as thresholds the _top performer_ cluster.
 
-If the architeture you are working on is ideal, it will enable you in delivery a system that satisfies your quality level and allow you to be into the 
-_top performer_'s cluster
+The _top performers_ cluster consist in some empirical defined threasolds for those metrics:
 
-The best performers cluster consist in some empirical defined threasolds for those metrics:
-
-* Deploy frequency: > 60 month
+* Deploy frequency: > 60 deploy per month
 * Change fail rate: < 15%
 * Lead time for change: < 1 day
 * Mean time to Recover: < 1 hour
 
-If it's not clear this could be read as:
+## The hypothesis
+
+If we meet both our target we can safely declare that:
 
 ```the architecture we are working on give us the ability to deliver with the right ammount of effort a product with the quality that is relevant for our business```
 
-notes on this are:
+consideration on the hypothesis:
 
-* What happen if you are able to deliver in the right time but at lower quality? 
-    * if you choose those levels as your requirement probably you are loosing money because of poor quality experience, or you have decided to use wrong threasholds for your quality definition.
-* what happen if you are able to deliver the right quality but without been in the _top performer_ cluster?
-    * It can be acceptable if you are in a not so competitive market, but if your market is competitive you are loosing grip on the market and for sure gain some product debt because your competitor can move faster than you.
+* What are the consequence of beeing able to deliver at the right speed but with lower quality? 
+    * or you are loosing money because of the poor quality your users are experiencing
+    * or you have defined wrong threshold for your quality
+* What are the consequences of beeing able to deliver the right quality but with less efficiency?
+    * or you are loosing grip on the market and gain some product debt because your competitor can move faster than you.
+    * or you are compensating adding more tech debt in order to meet the objectives
+    * or you have defined the wrong threshold for your efficiency
 
 # Changing the architecture
-
-Architecture is quite a broarder topic, it spans from library implementation to the IT organization(eg. applying the inverse conway maneuver), and also quite risky considering that a huge change in architeture requires a switch in the engineering approach that is not easy to deliver to all your engineers as one. As example, deciding that event streaming is the way to go does not means that your software engineer are ready to deal with eventual consistency.
 
 In a big IT department, verify that the new architeture is implemented correctly in all the corner of the system is quite challenging topic due to the high parallelism within the organization.
 
