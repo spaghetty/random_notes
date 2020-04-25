@@ -1,2 +1,3 @@
-# random_notes
-collection of random notes related to any topic
+# Life, the Universe and Everything
+
+collection of random notes related to any unrelated topics
