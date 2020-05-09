@@ -1,50 +1,53 @@
 # About Architecture and Tech Debt
 
-Architecture is quite a broard topic, it spans from library implementation to the IT organization(eg. applying the inverse conway maneuver), and also quite risky considering that a huge change in architeture increase the knowledge needed to deal with your system. As example, deciding that event streaming is the way to go does not means that your engineering community is ready to deal with eventual consistency and all other techinacal details involved.
+Architecture is quite a broad topic; it spans from library implementation to IT organization(eg. applying the inverse conway maneuver). It is also quite risky, considering that a huge change in architecture requires higher knowledge to deal with the system. for instance, opt for event streaming does not mean your engineering team is ready to deal with eventual consistency and all other technical details involved.
 
-When and how an evolution of your architecture is needed and how to measure if the change made is going in the right direction is hard to define.
+When and how an evolution of your architecture is needed, and how to measure the impact is hard to define.
 
-Trying to apply a pragmatic approach avoiding the gut feeling is mandatory in this area.
+Favoring pragmatic approach over gut feeling is mandatory in this area.
 
-## The tech debt and the ideal architecture
+## From tech debt to an the ideal architecture
 
-The best description that I can remember about tech debt sound like:
+The best definition of tech debt that I remember sounds like:
 
-```tech debt is the distance between your system current implementation and the ideal one```
+```tech debt is the distance between your current system implementation and the ideal one```
 
-as this could sound reasonable it's not so useful per se without a clear measurament of the tech debt, and moreover the concept of `ideal one` is a moving target, because it gets more complex with the growth of your system.
+reasonable as it may sound, it is not useful without a clear definition of `ideal architecture`. Also, the concept of `ideal architecture` is a moving target as it evolves alongside your system.
 
-This definition of the tech debt implies a definition for an `ideal architecture` in the form of:
+The next big thing is to have a clear understanding of what `ideal architecture` can be, and in my opinion something line the following is quite close:
 
-```an architecture that allow you to deliver efficiently a good quality service```
+```an architecture that allows you to efficiently deliver a good quality service```
 
-The ideal architecture sadlly isn't a single recipe, there is no such thing as right solution, but a huge set of best practices that you can implement and adapt to your system and organization in order to reach the right trade off your organization's needs.
-
+Ideal architecture sadly isn't a single recipe. There is no such thing as the right solution, you only have a huge set of best practices and trade-offs to apply in order to meet your organization's needs.
 
 ## Measurement
 
-In order to have a good aproximaption of this distance you need to measure two different dimensions:
+As direct consequence of the previous definition of an `ideal architecture` we identify two main dimensions for measuring that:
 
-* Quality of your service
-* Speed in building your service
+* Quality of your service defines the `good quality`
+* Speed in deliver your service defines the `efficiency` 
 
-and then define some thresholds relevant to define is you have an acceptable tech debt or it's the case to start paying your debit off.
+Both of those are really subjective to your business needs and your goals, to make them practical you need to go a bit deeper.
 
 ## An example from my experience
 
+In my experience applying this method, during my work in Subito.it, we worked in order to define those two dimension in the best way we could.
+
 ### The definition of quality service
 
-In the context of digital services there is a lot of studies about the definition of quality and you should find the one that fits better to your organization. In Subito we are using an iterative approach defining the relevant metrics and we add more dimensions as soon as we identify new desiderable characteristic. As of today we are monitoring these:
+In the context of digital services there is an extensive literature about the measurement of the quality and you should find the one that fits you better. In Subito we are using an iterative approach adding relevant metrics as soon as we identify the relate business value. As of today we are monitoring these ones:
 
 * Availability
 * QoS
 * Latency
 
-We defined a complex system of thresholds in order to  be able to easily define if we are in target or not.
+We have defined a complete set of threshold that best represent our needs. This threshold system is based on a concept of service Tier (from 0 to 2) in order to express the different level of quality that a service must honor.
 
-### The definition of efficiency (in the develpment phase)
+### The definition of efficiency
 
-We embrace totaly the definition presented within the book Accelerate (by Jez Humble, Gene Kim, Nicole Forsgren) and we define the development performance as:
+The efficiency is related to the development phase and amis to measure the effort and complexity involved in changing the system. The design for change, as considered in the evolutionary architecture, is one of the desireable characteristic for our system. 
+
+In the effort to define this, we follow the specifications presented in the book Accelerate (by Jez Humble, Gene Kim, Nicole Forsgren), considering:
 
 * Deploy frequency
 * Change fail rate
@@ -53,7 +56,7 @@ We embrace totaly the definition presented within the book Accelerate (by Jez Hu
 
 using as thresholds the _top performer_ cluster.
 
-The _top performers_ cluster consist in some empirical defined threasolds for those metrics:
+The _top performers_ cluster consist in some empirical defined thresholds for those metrics:
 
 * Deploy frequency: > 60 deploy per month
 * Change fail rate: < 15%
@@ -64,30 +67,14 @@ The _top performers_ cluster consist in some empirical defined threasolds for th
 
 If we meet both our target we can safely declare that:
 
-```the architecture we are working on give us the ability to deliver with the right ammount of effort a product with the quality that is relevant for our business```
+```the architecture we are working on give us the ability to deliver with the right amount of effort a product with the quality that is relevant for our business```
 
 consideration on the hypothesis:
 
-* What are the consequence of beeing able to deliver at the right speed but with lower quality? 
+* What are the consequence of being able to deliver at the right speed but with lower quality? 
     * or you are loosing money because of the poor quality your users are experiencing
     * or you have defined wrong threshold for your quality
-* What are the consequences of beeing able to deliver the right quality but with less efficiency?
+* What are the consequences of being able to deliver the right quality but with less efficiency?
     * or you are loosing grip on the market and gain some product debt because your competitor can move faster than you.
     * or you are compensating adding more tech debt in order to meet the objectives
     * or you have defined the wrong threshold for your efficiency
-
-# Changing the architecture
-
-In a big IT department, verify that the new architeture is implemented correctly in all the corner of the system is quite challenging topic due to the high parallelism within the organization.
-
-## How do we deal with architectural evolution
-
-Applying some priciples from evolutionary architecture, emergin architecture and google SRE approach seems to lead to a valid approach in order to achive a distributed architectural effort.
-
-A need for an architecture emerge within the day by day experiment appening in all the teams, the more valuable idea is to collect those experiment and try to standardize the ones that perform better.
-
-Apply a strict obervability in order to measure the system in all is parts is the basic enabler for introducing the fitnes functions concept presented in the topic of evolutionary architecture.
-
-Having a team that is totally focused on those metrics usefull for describing the system allows you to form some champions (engineer totally focused on this matter) that can support product oriented teams(that are more focused on business results of their work) in order to improve their performance in those specific metrics as soon as they start to go down (as experessed into the SRE strategy)
-
-Sharing the knowledge and coaching the engineering community is mandatory in order to avoid useless effort and polarize the efforts throward a specific direction, an approach in this direction is having public repository where all the engineer can discuss on best practices that need to be embedded in our development model making them accepted from all the members.
