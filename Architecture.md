@@ -14,7 +14,7 @@ The best definition of tech debt that I remember sounds like:
 
 reasonable as it may sound, it is not useful without a clear definition of `ideal architecture`. Also, the concept of `ideal architecture` is a moving target as it evolves alongside your system.
 
-The next big thing is to have a clear understanding of what `ideal architecture` can be, and in my opinion something line the following is quite close:
+The next big thing is having a clear understanding of what `ideal architecture` can be, and in my opinion something like the following is quite close:
 
 ```an architecture that allows you to efficiently deliver a good quality service```
 
@@ -22,41 +22,41 @@ Ideal architecture sadly isn't a single recipe. There is no such thing as the ri
 
 ## Measurement
 
-As direct consequence of the previous definition of an `ideal architecture` we identify two main dimensions for measuring that:
+The definition of `ideal architecture` leads us to identify two main dimensions for measuring that:
 
-* Quality of your service defines the `good quality`
-* Speed in deliver your service defines the `efficiency` 
+* The Quality of your service defines `good quality`;
+* The Speed delivering your service defines `efficiency`.
 
-Both of those are really subjective to your business needs and your goals, to make them practical you need to go a bit deeper.
+Both this dimensions largely depend on your business needs and goals. To make them practical you need to dig a bit deeper into your requirements.
 
 ## An example from my experience
 
-In my experience applying this method, during my work in Subito.it, we worked in order to define those two dimension in the best way we could.
+In my experiences at Subito.it, we spent grate effort defining those two dimension in the best way we could.
 
 ### The definition of quality service
 
-In the context of digital services there is an extensive literature about the measurement of the quality and you should find the one that fits you better. In Subito we are using an iterative approach adding relevant metrics as soon as we identify the relate business value. As of today we are monitoring these ones:
+In the context of digital services there is an extensive literature about measurement of quality and you should find the one that fits you best. In Subito we are using an iterative approach adding relevant metrics as soon as we identify the relative business value. As of today we are monitoring the following:
 
 * Availability
 * QoS
 * Latency
 
-We have defined a complete set of threshold that best represent our needs. This threshold system is based on a concept of service Tier (from 0 to 2) in order to express the different level of quality that a service must honor.
+We have defined a complete set of thresholds that best represent our needs. This threshold system is based on a concept of service Tier (from 0 to 2) to express the different level of quality that a service must honor.
 
 ### The definition of efficiency
 
-The efficiency is related to the development phase and amis to measure the effort and complexity involved in changing the system. The design for change, as considered in the evolutionary architecture, is one of the desireable characteristic for our system. 
+The efficiency is related to the development phase and aims to measure the effort and complexity involved in changing the system. The design for change, as considered in "evolutionary architecture", is one of the desireable characteristic for our system. 
 
-In the effort to define this, we follow the specifications presented in the book Accelerate (by Jez Humble, Gene Kim, Nicole Forsgren), considering:
+In the effort to define this, we follow the specifications presented in the book Accelerate (by Jez Humble, Gene Kim, Nicole Forsgren) considering:
 
 * Deploy frequency
 * Change fail rate
 * Lead time for change
 * Mean time to Recover
 
-using as thresholds the _top performer_ cluster.
+using the _top performer_ cluster values as thresholds.
 
-The _top performers_ cluster consist in some empirical defined thresholds for those metrics:
+The _top performer_ cluster consists in empirical defined thresholds for these metrics:
 
 * Deploy frequency: > 60 deploy per month
 * Change fail rate: < 15%
@@ -65,16 +65,16 @@ The _top performers_ cluster consist in some empirical defined thresholds for th
 
 ## The hypothesis
 
-If we meet both our target we can safely declare that:
+If we reach both our targets, we can safely declare that:
 
-```the architecture we are working on give us the ability to deliver with the right amount of effort a product with the quality that is relevant for our business```
+```the architecture we are working on gives us the ability to deliver a product whose the quality is relevant for our business  with the right amount of effort```
 
-consideration on the hypothesis:
+considerations on the hypothesis:
 
-* What are the consequence of being able to deliver at the right speed but with lower quality? 
-    * or you are loosing money because of the poor quality your users are experiencing
+* What are the consequences of being able to deliver at the timely but with lower quality? 
+    * either you are losing money because of the poor quality your users are experiencing
     * or you have defined wrong threshold for your quality
 * What are the consequences of being able to deliver the right quality but with less efficiency?
-    * or you are loosing grip on the market and gain some product debt because your competitor can move faster than you.
-    * or you are compensating adding more tech debt in order to meet the objectives
+    * either you are losing grip on the market and gaining some product debt because your competitor can move faster than you
+    * or you are compensating adding more tech debt to meet the objectives
     * or you have defined the wrong threshold for your efficiency
