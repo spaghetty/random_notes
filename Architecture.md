@@ -78,3 +78,4 @@ considerations on the hypothesis:
     * either you are losing grip on the market and gaining some product debt because your competitor can move faster than you
     * or you are compensating adding more tech debt to meet the objectives
     * or you have defined the wrong threshold for your efficiency
+
