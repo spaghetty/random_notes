@@ -20,6 +20,14 @@ The next big thing is having a clear understanding of what `ideal architecture` 
 
 Ideal architecture sadly isn't a single recipe. There is no such thing as the right solution, you only have a huge set of best practices and trade-offs to apply in order to meet your organization's needs.
 
+## The evolutionary side of the architecture
+
+A consideration needed here is that the ```ideal architecture``` is an ephemeral concept, because it change with the complexity of your system. As an example increasing the number of engineers change your teams number and it reflects to a change in your architecture and the level of distribution you are dealing with.
+
+The main idea here is switching the measurement of the tech debt from a quantitative approach to a qualitative evaluation, from the solution space to the problem space.
+
+This new approach will allow you to have a continuous measurement of your effectiveness and this need to be continuously improved because the condition under which you are building your system are evolving with the time.
+
 ## Measurement
 
 The definition of `ideal architecture` leads us to identify two main dimensions for measuring that:
@@ -79,3 +87,30 @@ considerations on the hypothesis:
     * or you are compensating adding more tech debt to meet the objectives
     * or you have defined the wrong threshold for your efficiency
 
+## The never-ending commitment
+
+As final consideration about this approach is that you can never settle on a specific target for various reasons
+
+
+### The efficiency 
+
+The efficiency level of your competitors will increase with the time, this is well known reading the past reports in order to see how the cluster move with the time, and you want stay in a specific cluster not at a specific level.
+
+Moreover sooner or later you will be tired to constantly try to catch up others and you will aim to be the leader.
+
+### The quality
+
+Although the quality is a business decision and you can be fine with your QoS targets for a long time this doesn't mean you will not struggle for improvement, be in target and be fast requires you to be way over your target (this concept comes directly from the error budget approach).
+
+Your quality definition will change, for us ad the beginning we were considering just the QoS but with time we discovered that Latency was quite important for us and this lead to a more complex problem to solve with the same efficiency. You will constantly discover new dimensions within the quality spectrum and the challenge to be at the same performance level will be harder every day.
+
+An interesting example I'm leaving to you is adding costs to the quality definition, and the imagine how this will impact solutions that were considered valid before.
+
+Other hypothetical dimensions are:
+
+* Size of responses (byte transfer can have different impact on accessibility from flaky connections and other things)
+* Number of request per page or view
+* Page Performance Index (that is not just latency)
+* Security
+
+and so many others you will discover relevant for you business. The point here is that when you start looking at numbers you will discover things that are going to make your life miserable.
